@@ -1,0 +1,20 @@
+name: Run curl every 5 minutes
+
+on:
+  schedule:
+    # cron expression to run every 5 minutes
+    - cron: "*/1 * * * *"
+
+jobs:
+  run-curl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run curl command
+        run: |
+          curl -X POST https://login-service-q30o.onrender.com/api/auth/login \
+            -H "Content-Type: application/json" \
+            -d '{"email": "sergiopall@hotmail.com", "password": "19961015Pall."}'
